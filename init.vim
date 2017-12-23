@@ -21,11 +21,7 @@
     set splitbelow
     set splitright
 
-"Split resizing
-    nnoremap <silent> <Leader>+ :exe "resize +5 "<CR>
-    nnoremap <silent> <Leader>- :exe "resize -5"<CR>
-    nnoremap <silent> <Leader>s :exe "call ShowConstructor()"<CR>
-    nnoremap <silent> <Leader>u :exe ":UpdateRemotePlugins"<CR>
+
 
 
 "Hide status line, using powerline
@@ -52,6 +48,7 @@
     Plugin 'VundleVim/Vundle.vim'
     " Plugin 'itchyny/lightline.vim'
     " Snippets
+    Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'SirVer/ultisnips'
     Plugin 'algotech/ultisnips-php'
     Plugin 'honza/vim-snippets'
@@ -69,132 +66,150 @@
 
 " Neovim Specific Plugins
 " Setup dein  ---------------------------------------------------------------{{{
-    if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
-      call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
-      call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
+
+    "if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
+      "call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
+      "call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
+    "endif
+    if &compatible
+      set nocompatible
     endif
     set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
-    call dein#begin(expand('~/.config/nvim'))
+    call dein#begin(expand('~/.config/nvim/bundle'))
     call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('dominic-dev/show-constructor')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('Xuyuanp/nerdtree-git-plugin')
+    call dein#add('tpope/vim-fugitive')
+
     if dein#check_install()
       call dein#install()
       let pluginsExist=1
     endif
-    call dein#end()
-    filetype plugin indent on
-" }}}
 
+    call dein#end()
+    call dein#save_state()
+    filetype plugin indent on
+    syntax enable
+" }}}
+"
+"
 " NeoBundle
 " Note: Skip initialization for vim-tiny or vim-small.
-    if 0 | endif
-
-    if &compatible
-      set nocompatible               " Be iMproved
-    endif
-
-    " Required:
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-    " Required:
-    call neobundle#begin(expand('~/.vim/bundle/'))
-
-    " Let NeoBundle manage NeoBundle
-    " Required:
-    NeoBundleFetch 'Shougo/neobundle.vim'
-
-    " My Bundles here:
-    NeoBundle 'vim-airline/vim-airline-themes'
-    NeoBundle 'show-constructor'
-
-    call neobundle#end()
+"    if 0 | endif
+"
+"    if &compatible
+"      set nocompatible               " Be iMproved
+"    endif
+"
+"    " Required:
+"    "set runtimepath+=~/.vim/bundle/neobundle.vim/
+"    set runtimepath+=~/.config/nvim/bundle/neobundle.vim
+"
+"    " Required:
+"    "call neobundle#begin(expand('~/.vim/bundle/'))
+"    call neobundle#begin(expand('~/.config/nvim/bundle'))
+"
+"    " Let NeoBundle manage NeoBundle
+"    " Required:
+"    NeoBundleFetch 'Shougo/neobundle.vim'
+"
+"    " My Bundles here:
+"    NeoBundle 'vim-airline/vim-airline'
+"    NeoBundle 'vim-airline/vim-airline-themes'
+"    NeoBundle 'show-constructor'
+"    NeoBundle 'airblade/vim-gitgutter'
+"    NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+"    NeoBundle 'tpope/vim-fugitive'
+"    "NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+"
+"    call neobundle#end()
 
 " Required:
-filetype plugin indent on
+"filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleCheck
+"NeoBundleCheck
 
 "airline"
 "let g:airline_theme='base16_spacemacs'
 let g:airline_theme='wombat'
 
 " vim-airline ---------------------------------------------------------------{{{
-
-  let g:webdevicons_enable_airline_statusline = 0
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#mike#enabled = 1
-  set hidden
-  let g:airline#extensions#tabline#fnamemod = ':t'
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline_powerline_fonts = 1
-  let g:airline_symbols.branch = ''
-  "cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
-  "tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
-  "nmap <leader>, :bnext<CR>
-  "tmap <leader>, <C-\><C-n>:bnext<cr>
-  "nmap <leader>. :bprevious<CR>
-  "tmap <leader>. <C-\><C-n>:bprevious<CR>
-  tmap <leader>1  <C-\><C-n><Plug>AirlineSelectTab1
-  tmap <leader>2  <C-\><C-n><Plug>AirlineSelectTab2
-  tmap <leader>3  <C-\><C-n><Plug>AirlineSelectTab3
-  tmap <leader>4  <C-\><C-n><Plug>AirlineSelectTab4
-  tmap <leader>5  <C-\><C-n><Plug>AirlineSelectTab5
-  tmap <leader>6  <C-\><C-n><Plug>AirlineSelectTab6
-  tmap <leader>7  <C-\><C-n><Plug>AirlineSelectTab7
-  tmap <leader>8  <C-\><C-n><Plug>AirlineSelectTab8
-  tmap <leader>9  <C-\><C-n><Plug>AirlineSelectTab9
-  nmap <leader>1 <Plug>AirlineSelectTab1
-  nmap <leader>2 <Plug>AirlineSelectTab2
-  nmap <leader>3 <Plug>AirlineSelectTab3
-  nmap <leader>4 <Plug>AirlineSelectTab4
-  nmap <leader>5 <Plug>AirlineSelectTab5
-  nmap <leader>6 <Plug>AirlineSelectTab6
-  nmap <leader>7 <Plug>AirlineSelectTab7
-  nmap <leader>8 <Plug>AirlineSelectTab8
-  nmap <leader>9 <Plug>AirlineSelectTab9
-  let g:airline#extensions#branch#format = 0
-  let g:airline_detect_spelllang=0
-  let g:airline_detect_spell=0
-  let g:airline#extensions#hunks#enabled = 0
-  let g:airline#extensions#wordcount#enabled = 0
-  let g:airline#extensions#whitespace#enabled = 0
-  " let g:airline_section_c = '%f%m'
-  " let g:airline_section_x = ''
-  "let g:airline_section_y = ''
-  " let g:airline_section_z = '%l:%v'
-  "let g:airline_section_z = '%{LineNoIndicator()} :%2c'
-  " let g:line_no_indicator_chars = [' ', '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█']
-  let g:line_no_indicator_chars = ['⎺', '⎻', '⎼', '⎽', '_']
-  let g:airline_mode_map = {
-        \ 'n'  : '',
-        \ 'i' : '',
-        \ 'R' : '',
-        \ 'v' : '',
-        \ 'V' : '',
-        \ 'c' : '',
-        \ 's' : '',
-        \ 'S' : '',
-        \ ''  : '',
-        \ 't' : '',
-        \}
-  let g:airline#extensions#tabline#buffer_idx_format = {
-        \ '0': '0 ',
-        \ '1': '1 ',
-        \ '2': '2 ',
-        \ '3': '3 ',
-        \ '4': '4 ',
-        \ '5': '5 ',
-        \ '6': '6 ',
-        \ '7': '7 ',
-        \ '8': '8 ',
-        \ '9': '9 ',
-        \}
-
+    let g:webdevicons_enable_airline_statusline = 0
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#mike#enabled = 1
+    set hidden
+    let g:airline#extensions#tabline#fnamemod = ':t'
+    let g:airline#extensions#tabline#buffer_idx_mode = 1
+    let g:airline_powerline_fonts = 1
+    let g:airline_symbols.branch = ''
+    "cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
+    "tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
+    "nmap <leader>, :bnext<CR>
+    "tmap <leader>, <C-\><C-n>:bnext<cr>
+    "nmap <leader>. :bprevious<CR>
+    "tmap <leader>. <C-\><C-n>:bprevious<CR>
+    tmap <leader>1  <C-\><C-n><Plug>AirlineSelectTab1
+    tmap <leader>2  <C-\><C-n><Plug>AirlineSelectTab2
+    tmap <leader>3  <C-\><C-n><Plug>AirlineSelectTab3
+    tmap <leader>4  <C-\><C-n><Plug>AirlineSelectTab4
+    tmap <leader>5  <C-\><C-n><Plug>AirlineSelectTab5
+    tmap <leader>6  <C-\><C-n><Plug>AirlineSelectTab6
+    tmap <leader>7  <C-\><C-n><Plug>AirlineSelectTab7
+    tmap <leader>8  <C-\><C-n><Plug>AirlineSelectTab8
+    tmap <leader>9  <C-\><C-n><Plug>AirlineSelectTab9
+    nmap <leader>1 <Plug>AirlineSelectTab1
+    nmap <leader>2 <Plug>AirlineSelectTab2
+    nmap <leader>3 <Plug>AirlineSelectTab3
+    nmap <leader>4 <Plug>AirlineSelectTab4
+    nmap <leader>5 <Plug>AirlineSelectTab5
+    nmap <leader>6 <Plug>AirlineSelectTab6
+    nmap <leader>7 <Plug>AirlineSelectTab7
+    nmap <leader>8 <Plug>AirlineSelectTab8
+    nmap <leader>9 <Plug>AirlineSelectTab9
+    let g:airline#extensions#branch#format = 0
+    let g:airline_detect_spelllang=0
+    let g:airline_detect_spell=0
+    let g:airline#extensions#hunks#enabled = 0
+    let g:airline#extensions#wordcount#enabled = 0
+    let g:airline#extensions#whitespace#enabled = 0
+    " let g:airline_section_c = '%f%m'
+    " let g:airline_section_x = ''
+    "let g:airline_section_y = ''
+    " let g:airline_section_z = '%l:%v'
+    "let g:airline_section_z = '%{LineNoIndicator()} :%2c'
+    " let g:line_no_indicator_chars = [' ', '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█']
+    let g:line_no_indicator_chars = ['⎺', '⎻', '⎼', '⎽', '_']
+    let g:airline_mode_map = {
+          \ 'n'  : '',
+          \ 'i' : '',
+          \ 'R' : '',
+          \ 'v' : '',
+          \ 'V' : '',
+          \ 'c' : '',
+          \ 's' : '',
+          \ 'S' : '',
+          \ ''  : '',
+          \ 't' : '',
+          \}
+    let g:airline#extensions#tabline#buffer_idx_format = {
+          \ '0': '0 ',
+          \ '1': '1 ',
+          \ '2': '2 ',
+          \ '3': '3 ',
+          \ '4': '4 ',
+          \ '5': '5 ',
+          \ '6': '6 ',
+          \ '7': '7 ',
+          \ '8': '8 ',
+          \ '9': '9 ',
+          \}
 "}}}
 
 
@@ -217,6 +232,7 @@ let g:airline_theme='wombat'
 
 "NerdTree
     nmap <leader>t  :exe ":NERDTreeToggle"<CR>
+
 
 " vertical line indentation
     let g:indentLine_color_term = 239
@@ -459,10 +475,10 @@ let python_highlight_all=1
     inoremap <C-s> <ESC>:w<CR>
 
 " split navigations
-     nnoremap <C-J> <C-W><C-J>
-     nnoremap <C-K> <C-W><C-K>
-     nnoremap <C-L> <C-W><C-L>
-     nnoremap <C-H> <C-W><C-H>
+     "nnoremap <C-J> <C-W><C-J>
+     "nnoremap <C-K> <C-W><C-K>
+     "nnoremap <C-L> <C-W><C-L>
+     "nnoremap <C-H> <C-W><C-H>
 
 " close line begin in new line
     inoremap <C-o> <ESC>o
@@ -488,6 +504,16 @@ let python_highlight_all=1
     imap <leader>v <esc>"+pi
     vmap <leader>c "+y
 
+"Split resizing
+    nnoremap <silent> <Leader>+ :exe "resize +5 "<CR>
+    nnoremap <silent> <Leader>- :exe "resize -5"<CR>
+
+"Show constructor
+    nnoremap <silent> <Leader>s :exe "call ShowConstructor()"<CR>
+
+"Update plugins
+    nnoremap <silent> <Leader>u :exe ":UpdateRemotePlugins"<CR>
+
 "Remember cursor position between sessions
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -503,6 +529,3 @@ let python_highlight_all=1
     augroup END
 
 "set laststatus=2
-"python3 from powerline.vim import setup as powerline_setup
-"python3 powerline_setup()
-"python3 del powerline_setup
