@@ -20,6 +20,7 @@
     set mouse=a "enable mouse scrolling
     set splitbelow
     set splitright
+	set clipboard=unnamedplus
 
 
 
@@ -82,6 +83,9 @@
     call dein#add('airblade/vim-gitgutter')
     call dein#add('Xuyuanp/nerdtree-git-plugin')
     call dein#add('tpope/vim-fugitive')
+    call dein#add('ryanoasis/vim-devicons')
+    call dein#add('terryma/vim-multiple-cursors')
+	call dein#local('~/Development/vim/', {}, ['nvim-jchain'])
 
     if dein#check_install()
       call dein#install()
@@ -138,7 +142,7 @@
 let g:airline_theme='wombat'
 
 " vim-airline ---------------------------------------------------------------{{{
-    let g:webdevicons_enable_airline_statusline = 0
+    let g:webdevicons_enable_airline_statusline = 1
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
@@ -249,9 +253,10 @@ let g:airline_theme='wombat'
         \ set textwidth=79 |
         \ set expandtab |
         \ set autoindent |
-    "   \ set smartindent |
         \ set smarttab | 
-        \ set fileformat=unix
+        \ set fileformat=unix |
+		\ nnoremap <F5> :w !python<CR>
+"nnoremap <F5> :w !python<CR>
  "Django shortkeys
     "let g:last_relative_dir = ''
     "nnoremap \1 :call RelatedFile ("models.py")<cr>
@@ -301,16 +306,10 @@ let g:airline_theme='wombat'
     au BufNewFile,BufRead *.java
         \ :nmap <F9> :exe ":JavaImportOrganize"<CR>|
         \ :nmap <F8> :exe ":JavaCorrect"<CR>|
-        "\ :command Jet JavaGet|
-        "\ :command Jset JavaSet|
-        "\ :command Jgetset JavaGetSet|
-        "\ :command GC JavaConstructor|
         \ :nmap <A-R>  :exe ":JavaRename " input("New name: ")<CR>|
-        \ inoremap <expr> <c-return> SemiColon()
-
-        " \ :nmap <F9> :exe ":Ant jar"<CR> :exe ":Ant run"<CR> |
-        " \ :nmap <F11> :exe ":Ant jar"<CR> |
-        " \ :nmap <F12> :exe ":Ant run"<CR> |
+        \ :inoremap <expr> <c-return> SemiColon()|
+		\:nnoremap <leader>cc :exe ":ChainConstructor"<CR>|
+		:vnoremap <leader>cc :exe ":ChainConstructor"<CR>
 
 " mark extra whitespace
      "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
