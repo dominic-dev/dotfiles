@@ -11,6 +11,15 @@
     set encoding=utf-8
     set undofile
     set undodir="$HOME/.vim-undo-files"
+    set background=dark
+    set t_Co=256
+	set ttyfast
+
+"Hide status line, using powerline
+    "set noshowmode
+    "set noruler
+    "set laststatus=0
+    "set noshowcmd
 
 " Default delimiter
     filetype plugin indent on
@@ -30,8 +39,6 @@
     " start- all plugins below
 
     Plugin 'VundleVim/Vundle.vim'
-    " Plugin 'itchyny/lightline.vim'
-    " Snippets
     Plugin 'SirVer/ultisnips'
     Plugin 'algotech/ultisnips-php'
     Plugin 'honza/vim-snippets'
@@ -44,9 +51,6 @@
     Plugin 'ternjs/tern_for_vim'
     Plugin 'Yggdroot/indentLine'
     Plugin 'ctrlpvim/ctrlp.vim'
-
-
-
 
     " stop - all plugins above
     call vundle#end()
@@ -213,8 +217,11 @@ let python_highlight_all=1
     "autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
 
 " Search and replace"
-    :nmap <C-H>  :exe SearchAndReplaceLine()<CR>
-    :nmap <C-A-H>  :exe SearchAndReplace()<CR>
+	nnoremap  U <C-R>
+    "nnoremap <C-r>  :exe SearchAndReplaceLine()<CR>
+	nnoremap <C-r>  :call SearchAndReplaceLine()<CR>
+	vnoremap <C-r>  <esc>:call SearchAndReplaceSelection()<CR>
+	":nmap <C-A-r>  :exe SearchAndReplace()<CR>
     let g:g_query = ""
     let g:g_replace = ""
     function SearchAndReplace()
@@ -225,15 +232,53 @@ let python_highlight_all=1
             execute ':%s/'.query.'/'.replace.'/g'
         endif
     endfunction
+	"Search and replace line or selection
     function SearchAndReplaceLine()
         echo "Search and Replace (line)"
         let query = input("Search: ", g:g_query)
         let replace = input("Replace: ")
         if len(query) && len(replace)
+			let l:winview = winsaveview()
             let g:g_query = query
             execute ':s/'.query.'/'.replace.'/g'
+			call winrestview(l:winview)
         endif
     endfunction
+    function! SearchAndReplaceSelection() range
+        echo "Search and Replace (selection)"
+        let query = input("Search: ", g:g_query)
+        let replace = input("Replace: ")
+        if len(query) && len(replace)
+            let g:g_query = query
+            "execute ":'<, '>s/'.query.'/'.replace.'/g"
+            call Preserve(":'<, '>s/'.query.'/'.replace.'/g")
+        endif
+    endfunction
+
+" A wrapper function to restore the cursor position, window position,
+" and last search after running a command.
+function! Preserve(command)
+  " Save the last search
+  let last_search=@/
+  " Save the current cursor position
+  let save_cursor = getpos(".")
+  " Save the window position
+  normal H
+  let save_window = getpos(".")
+  call setpos('.', save_cursor)
+
+  " Do the business:
+  execute a:command
+  "call a:command
+
+  " Restore the last_search
+  let @/=last_search
+  " Restore the window position
+  call setpos('.', save_window)
+  normal zt
+  " Restore the cursor position
+  call setpos('.', save_cursor)
+endfunction
 
 "Semicolon
     function! SemiColon()
@@ -256,7 +301,7 @@ let python_highlight_all=1
 " toggle F2 for paste
     nnoremap <F2> :set invpaste paste?<CR>
     set pastetoggle=<F2>
-    set showmode
+    set noshowmode
 
 " tabs in gVim
     nnoremap <a-1> 1gt
@@ -271,10 +316,10 @@ let python_highlight_all=1
     inoremap <C-s> <ESC>:w<CR>
 
 " split navigations
-    " nnoremap <C-J> <C-W><C-J>
-    " nnoremap <C-K> <C-W><C-K>
-    " nnoremap <C-L> <C-W><C-L>
-    " nnoremap <C-H> <C-W><C-H>
+     nnoremap <C-J> <C-W><C-J>
+     nnoremap <C-K> <C-W><C-K>
+     nnoremap <C-L> <C-W><C-L>
+     nnoremap <C-H> <C-W><C-H>
 
 " close line begin in new line
     inoremap <C-o> <ESC>o
@@ -310,3 +355,8 @@ let python_highlight_all=1
         autocmd BufWinLeave *.* mkview
         autocmd BufWinEnter *.* loadview
     augroup END
+
+"set laststatus=2
+"python3 from powerline.vim import setup as powerline_setup
+"python3 powerline_setup()
+"python3 del powerline_setup
