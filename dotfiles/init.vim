@@ -21,7 +21,7 @@
     set mouse=a "enable mouse scrolling
     set splitbelow
     set splitright
-	set clipboard=unnamedplus
+	"set clipboard=unnamedplus
 
 
 
@@ -50,7 +50,7 @@
     Plugin 'VundleVim/Vundle.vim'
     " Plugin 'itchyny/lightline.vim'
     " Snippets
-    Plugin 'christoomey/vim-tmux-navigator'
+	Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'SirVer/ultisnips'
     Plugin 'algotech/ultisnips-php'
     Plugin 'honza/vim-snippets'
@@ -58,7 +58,7 @@
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'tpope/vim-surround'
     Plugin 'tmhedberg/SimpylFold'
-    Plugin 'Valloric/YouCompleteMe'
+	Plugin 'Valloric/YouCompleteMe'
     Plugin 'vim-scripts/indentpython.vim'
     Plugin 'ternjs/tern_for_vim'
     Plugin 'Yggdroot/indentLine'
@@ -86,8 +86,24 @@
     call dein#add('ryanoasis/vim-devicons')
     call dein#add('terryma/vim-multiple-cursors')
     "call dein#add('dominic-dev/nvim-jchain')
-    call dein#add('dominic-dev/nvim-showcon')
-	call dein#local('~/Development/vim/', {}, ['nvim-jchain'])
+    "call dein#add('dominic-dev/nvim-showcon')
+	"call dein#local('~/Development/vim/', {}, ['nvim-jchain'])
+    " php
+    call dein#add('ludovicchabant/vim-gutentags')
+    "call dein#add('vim-scripts/YankRing.vim')
+    call dein#add('tpope/vim-abolish')
+    call dein#add('StanAngeloff/php.vim')
+    call dein#add('stephpy/vim-php-cs-fixer')
+    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('padawan-php/padawan.vim')
+    call dein#add('padawan-php/deoplete-padawan')
+    call dein#add('neomake/neomake')
+    call dein#add('adoy/vim-php-refactoring-toolbox')
+    call dein#add('stephpy/vim-php-cs-fixer')
+    call dein#add('phpactor/phpactor')
+    call dein#add('majutsushi/tagbar')
+    call dein#add('Townk/vim-autoclose')
+	call dein#add('mattn/emmet-vim')
 
     if dein#check_install()
       call dein#install()
@@ -99,45 +115,21 @@
     filetype plugin indent on
     syntax enable
 " }}}
-"
-"
-" NeoBundle
-" Note: Skip initialization for vim-tiny or vim-small.
-"    if 0 | endif
-"
-"    if &compatible
-"      set nocompatible               " Be iMproved
-"    endif
-"
-"    " Required:
-"    "set runtimepath+=~/.vim/bundle/neobundle.vim/
-"    set runtimepath+=~/.config/nvim/bundle/neobundle.vim
-"
-"    " Required:
-"    "call neobundle#begin(expand('~/.vim/bundle/'))
-"    call neobundle#begin(expand('~/.config/nvim/bundle'))
-"
-"    " Let NeoBundle manage NeoBundle
-"    " Required:
-"    NeoBundleFetch 'Shougo/neobundle.vim'
-"
-"    " My Bundles here:
-"    NeoBundle 'vim-airline/vim-airline'
-"    NeoBundle 'vim-airline/vim-airline-themes'
-"    NeoBundle 'show-constructor'
-"    NeoBundle 'airblade/vim-gitgutter'
-"    NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-"    NeoBundle 'tpope/vim-fugitive'
-"    "NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-"
-"    call neobundle#end()
 
-" Required:
-"filetype plugin indent on
+" Deoplete
+if &ft != 'java'
+	let g:deoplete#enable_at_startup = 1
+endif
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-"NeoBundleCheck
+" Autoclose
+"let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>", "UP" : "<UP>", "DOWN" : "<DOWN>"}
+let g:AutoClosePreserveDotReg = 0
+
+
+" yankring
+    let g:yankring_replace_n_pkey = '<m-p>'
+    let g:yankring_replace_n_nkey = '<m-n>'
+
 
 "airline"
 "let g:airline_theme='base16_spacemacs'
@@ -260,6 +252,7 @@ let g:airline_theme='wombat'
         \ set fileformat=unix |
 		\ nnoremap <F5> :w !python3<CR>
 "nnoremap <F5> :w !python<CR>
+
  "Django shortkeys
     "let g:last_relative_dir = ''
     "nnoremap \1 :call RelatedFile ("models.py")<cr>
@@ -300,8 +293,31 @@ let g:airline_theme='wombat'
       \ inoremap <expr> <c-return> SemiColon()|
       \ inoremap $ 4|
       \ inoremap 4 $|
-      \ inoremap . ->|
-      \ inoremap <a-.> .
+	  \	inoremap . <c-r>=PHPDot()<CR>|
+	  \ call StartNeomake()
+	  "\ call neomake#configure#automake('w')
+      "\ inoremap . ->|
+      "\ inoremap <a-.> .
+
+let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+
+function! MyOnBattery()
+  return readfile('/sys/class/power_supply/ACAD/online') == ['0']
+endfunction
+
+function StartNeomake()
+	"if MyOnBattery()
+	  call neomake#configure#automake('w')
+	"else
+	  "call neomake#configure#automake('nw', 1000)
+	"endif
+endfunction
+	
+
+
 
 " JAVA
     autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
@@ -330,23 +346,27 @@ let python_highlight_all=1
     inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 
 " closing bracket behaviour
-    inoremap " ""<Esc>i
-    inoremap ' ''<Esc>i
-    inoremap ( ()<Esc>i
+    "inoremap " ""<Esc>i
+    "inoremap ' ''<Esc>i
+    "inoremap ( ()<Esc>i
+    "inoremap { {}<Esc>i
+    "inoremap {% {%  %}<Esc>2hi
+    "inoremap [ []<Esc>i
+    "inoremap <leader>{ {
+    "inoremap <leader>( (
+    "inoremap <leader>[ [
+    "inoremap ) <c-r>=ClosePair(')')<CR>
+    "inoremap ] <c-r>=ClosePair(']')<CR>
+    "inoremap } <c-r>=CloseBracket()<CR>
+    "inoremap } <c-r>=ClosePair('}')<CR>
+    "inoremap " <c-r>=QuoteDelim('"')<CR>
+    "inoremap ' <c-r>=QuoteDelim("'")<CR>
+    inoremap <% <%  %><Esc>2hi
+    inoremap <%= <%=  %><Esc>2hi
+
+
     "inoremap { {<esc>o}<esc>kA
-    inoremap { {}<Esc>i
-    inoremap {% {%  %}<Esc>2hi
-    inoremap [ []<Esc>i
     "inoremap <C-{> {<CR>}<Esc>O
-    inoremap <leader>{ {
-    inoremap <leader>( (
-    inoremap <leader>[ [
-    inoremap ) <c-r>=ClosePair(')')<CR>
-    inoremap ] <c-r>=ClosePair(']')<CR>
-    inoremap } <c-r>=CloseBracket()<CR>
-    inoremap } <c-r>=ClosePair('}')<CR>
-    inoremap " <c-r>=QuoteDelim('"')<CR>
-    inoremap ' <c-r>=QuoteDelim("'")<CR>
 
     function QuoteDelim(char)
      let line = getline('.')
@@ -480,11 +500,10 @@ let python_highlight_all=1
     nnoremap <C-s> :w<CR>
     inoremap <C-s> <ESC>:w<CR>
 
-" split navigations
+" navigations
      "nnoremap <C-J> <C-W><C-J>
      "nnoremap <C-K> <C-W><C-K>
      "nnoremap <C-L> <C-W><C-L>
-     "nnoremap <C-H> <C-W><C-H>
 
 " close line begin in new line
     inoremap <C-o> <ESC>o
@@ -498,7 +517,7 @@ let python_highlight_all=1
 
 " Remapping standard behaviour
     noremap H ^
-    noremap L g_ 
+    noremap L $
     nnoremap ; :
     vmap < <gv
     vmap > >gv
@@ -531,12 +550,18 @@ let python_highlight_all=1
 	endtry
 
 "Remember folds
-	"augroup remember_folds
-		"autocmd!
-		"autocmd BufWinLeave *.* silent mkview
-		"autocmd BufWinEnter *.* silent loadview
-	"augroup END
+	autocmd BufWinLeave *.* mkview
+	autocmd BufWinEnter *.* silent! loadview
 
 "set laststatus=2
 
 let g:jchain_include_noargs = 0
+
+
+function! PHPDot ()
+    let l:region = synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+    if l:region == "Constant"
+        return "."
+    endif
+    return "->"
+endfunction
