@@ -1,0 +1,190 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/7918d19/
+"	dotfiles/.vimrc	/^    inoremap " ""<Esc>i$/;"	m
+"	dotfiles/.vimrc	/^    inoremap " <c-r>=QuoteDelim('"')<CR>$/;"	m
+$NVIM_TUI_ENABLE_TRUE_COLOR	dotfiles/ginit.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR=1$/;"	v
+'	dotfiles/.vimrc	/^    inoremap ' ''<Esc>i$/;"	m
+'	dotfiles/.vimrc	/^    inoremap ' <c-r>=QuoteDelim("'")<CR>$/;"	m
+(	dotfiles/.vimrc	/^    inoremap ( ()<Esc>i$/;"	m
+)	dotfiles/.vimrc	/^    inoremap ) <c-r>=ClosePair(')')<CR>$/;"	m
+-	dotfiles/init.vim	/^    nmap - @$/;"	m
+;	dotfiles/.vimrc	/^    nnoremap ; :$/;"	m
+;	dotfiles/init.vim	/^    nnoremap ; :$/;"	m
+<	dotfiles/.vimrc	/^    vmap < <gv$/;"	m
+<	dotfiles/init.vim	/^    vmap < <gv$/;"	m
+<%	dotfiles/init.vim	/^    inoremap <% <%  %><Esc>2hi$/;"	m
+<%=	dotfiles/init.vim	/^    inoremap <%= <%=  %><Esc>2hi$/;"	m
+<C-H>	dotfiles/.vimrc	/^     nnoremap <C-H> <C-W><C-H>$/;"	m
+<C-J>	dotfiles/.vimrc	/^     nnoremap <C-J> <C-W><C-J>$/;"	m
+<C-K>	dotfiles/.vimrc	/^     nnoremap <C-K> <C-W><C-K>$/;"	m
+<C-L>	dotfiles/.vimrc	/^     nnoremap <C-L> <C-W><C-L>$/;"	m
+<C-o>	dotfiles/.vimrc	/^    inoremap <C-o> <ESC>o$/;"	m
+<C-o>	dotfiles/init.vim	/^    inoremap <C-o> <ESC>o$/;"	m
+<C-r>	dotfiles/.vimrc	/^	nnoremap <C-r>  :call SearchAndReplaceLine()<CR>$/;"	m
+<C-r>	dotfiles/.vimrc	/^	vnoremap <C-r>  <esc>:call SearchAndReplaceSelection()<CR>$/;"	m
+<C-r>	dotfiles/init.vim	/^	nnoremap <C-r>  :call SearchAndReplaceLine()<CR>$/;"	m
+<C-r>	dotfiles/init.vim	/^	vnoremap <C-r>  <esc>:call SearchAndReplaceSelection()<CR>$/;"	m
+<C-s>	dotfiles/.vimrc	/^    inoremap <C-s> <ESC>:w<CR>$/;"	m
+<C-s>	dotfiles/.vimrc	/^    nnoremap <C-s> :w<CR>$/;"	m
+<C-s>	dotfiles/init.vim	/^    inoremap <C-s> <ESC>:w<CR>$/;"	m
+<C-s>	dotfiles/init.vim	/^    nnoremap <C-s> :w<CR>$/;"	m
+<F2>	dotfiles/.vimrc	/^    nnoremap <F2> :set invpaste paste?<CR>$/;"	m
+<F2>	dotfiles/init.vim	/^    nnoremap <F2> :set invpaste paste?<CR>$/;"	m
+<Leader>+	dotfiles/init.vim	/^    nnoremap <silent> <Leader>+ :exe "resize +5 "<CR>$/;"	m
+<Leader>-	dotfiles/init.vim	/^    nnoremap <silent> <Leader>- :exe "resize -5"<CR>$/;"	m
+<Leader>s	dotfiles/init.vim	/^	nnoremap <silent> <Leader>s :exe "call ShowConstructor()"<CR>$/;"	m
+<Leader>u	dotfiles/init.vim	/^    nnoremap <silent> <Leader>u :exe ":UpdateRemotePlugins"<CR>$/;"	m
+<a-1>	dotfiles/.vimrc	/^    nnoremap <a-1> 1gt$/;"	m
+<a-1>	dotfiles/init.vim	/^    nnoremap <a-1> 1gt$/;"	m
+<a-2>	dotfiles/.vimrc	/^    nnoremap <a-2> 2gt$/;"	m
+<a-2>	dotfiles/init.vim	/^    nnoremap <a-2> 2gt$/;"	m
+<a-3>	dotfiles/.vimrc	/^    nnoremap <a-3> 3gt$/;"	m
+<a-3>	dotfiles/init.vim	/^    nnoremap <a-3> 3gt$/;"	m
+<a-4>	dotfiles/.vimrc	/^    nnoremap <a-4> 4gt$/;"	m
+<a-4>	dotfiles/init.vim	/^    nnoremap <a-4> 4gt$/;"	m
+<a-5>	dotfiles/.vimrc	/^    nnoremap <a-5> 5gt$/;"	m
+<a-5>	dotfiles/init.vim	/^    nnoremap <a-5> 5gt$/;"	m
+<a-6>	dotfiles/.vimrc	/^    nnoremap <a-6> 6gt$/;"	m
+<a-6>	dotfiles/init.vim	/^    nnoremap <a-6> 6gt$/;"	m
+<a-c>	dotfiles/init.vim	/^    nmap <a-c> <leader>c<space>$/;"	m
+<a-c>	dotfiles/init.vim	/^    vmap <a-c> <leader>c<space>$/;"	m
+<leader>(	dotfiles/.vimrc	/^    inoremap <leader>( ($/;"	m
+<leader>1	dotfiles/init.vim	/^    nmap <leader>1 <Plug>AirlineSelectTab1$/;"	m
+<leader>2	dotfiles/init.vim	/^    nmap <leader>2 <Plug>AirlineSelectTab2$/;"	m
+<leader>3	dotfiles/init.vim	/^    nmap <leader>3 <Plug>AirlineSelectTab3$/;"	m
+<leader>4	dotfiles/init.vim	/^    nmap <leader>4 <Plug>AirlineSelectTab4$/;"	m
+<leader>5	dotfiles/init.vim	/^    nmap <leader>5 <Plug>AirlineSelectTab5$/;"	m
+<leader>6	dotfiles/init.vim	/^    nmap <leader>6 <Plug>AirlineSelectTab6$/;"	m
+<leader>7	dotfiles/init.vim	/^    nmap <leader>7 <Plug>AirlineSelectTab7$/;"	m
+<leader>8	dotfiles/init.vim	/^    nmap <leader>8 <Plug>AirlineSelectTab8$/;"	m
+<leader>9	dotfiles/init.vim	/^    nmap <leader>9 <Plug>AirlineSelectTab9$/;"	m
+<leader>;	dotfiles/.vimrc	/^    inoremap <leader>; <C-o>m`<C-o>A;<C-o>``$/;"	m
+<leader>;	dotfiles/init.vim	/^    inoremap <leader>; <C-o>m`<C-o>A;<C-o>``$/;"	m
+<leader>[	dotfiles/.vimrc	/^    inoremap <leader>[ [$/;"	m
+<leader>c	dotfiles/.vimrc	/^    vmap <leader>c "+y$/;"	m
+<leader>c	dotfiles/init.vim	/^    vmap <leader>c "+y$/;"	m
+<leader>g	dotfiles/.vimrc	/^    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>$/;"	m
+<leader>g	dotfiles/init.vim	/^    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>$/;"	m
+<leader>t	dotfiles/.vimrc	/^    nmap <leader>t  :exe ":NERDTreeToggle"<CR>$/;"	m
+<leader>t	dotfiles/init.vim	/^    nmap <leader>t  :exe ":NERDTreeToggle"<CR>$/;"	m
+<leader>v	dotfiles/.vimrc	/^    imap <leader>v <esc>"+pi$/;"	m
+<leader>v	dotfiles/init.vim	/^    imap <leader>v <esc>"+pi$/;"	m
+<leader>{	dotfiles/.vimrc	/^    inoremap <leader>{ {$/;"	m
+<space>	dotfiles/.vimrc	/^    nnoremap <space> za$/;"	m
+<space>	dotfiles/init.vim	/^    nnoremap <space> za$/;"	m
+>	dotfiles/.vimrc	/^    vmap > >gv$/;"	m
+>	dotfiles/init.vim	/^    vmap > >gv$/;"	m
+CloseBracket	dotfiles/.vimrc	/^    function CloseBracket()$/;"	f
+CloseBracket	dotfiles/init.vim	/^    function CloseBracket()$/;"	f
+ClosePair	dotfiles/.vimrc	/^    function ClosePair(char)$/;"	f
+ClosePair	dotfiles/init.vim	/^    function ClosePair(char)$/;"	f
+H	dotfiles/.vimrc	/^    noremap H ^$/;"	m
+H	dotfiles/init.vim	/^    noremap H ^$/;"	m
+L	dotfiles/.vimrc	/^    noremap L g_ $/;"	m
+L	dotfiles/init.vim	/^    noremap L \$$/;"	m
+MyOnBattery	dotfiles/init.vim	/^function! MyOnBattery()$/;"	f
+NERDTreeIgnore	dotfiles/init.vim	/^	let NERDTreeIgnore = ['\\.pyc$', '\\.class$']$/;"	v
+PHPDot	dotfiles/init.vim	/^function! PHPDot ()$/;"	f
+Preserve	dotfiles/.vimrc	/^function! Preserve(command)$/;"	f
+Preserve	dotfiles/init.vim	/^    function! Preserve(command)$/;"	f
+PySort	dotfiles/.vimrc	/^    command! PySort call PySort()$/;"	c
+PySort	dotfiles/.vimrc	/^    fun! PySort() range$/;"	f
+PySort	dotfiles/init.vim	/^    command! PySort call PySort()$/;"	c
+PySort	dotfiles/init.vim	/^    fun! PySort() range$/;"	f
+QuoteDelim	dotfiles/.vimrc	/^    function QuoteDelim(char)$/;"	f
+QuoteDelim	dotfiles/init.vim	/^    function QuoteDelim(char)$/;"	f
+RelatedFile	dotfiles/.vimrc	/^    fun! RelatedFile(file)$/;"	f
+SearchAndReplace	dotfiles/.vimrc	/^    function SearchAndReplace()$/;"	f
+SearchAndReplace	dotfiles/init.vim	/^    function SearchAndReplace()$/;"	f
+SearchAndReplaceLine	dotfiles/.vimrc	/^    function SearchAndReplaceLine()$/;"	f
+SearchAndReplaceLine	dotfiles/init.vim	/^    function SearchAndReplaceLine()$/;"	f
+SearchAndReplaceSelection	dotfiles/.vimrc	/^    function! SearchAndReplaceSelection() range$/;"	f
+SearchAndReplaceSelection	dotfiles/init.vim	/^    function! SearchAndReplaceSelection() range$/;"	f
+SemiColon	dotfiles/.vimrc	/^    function! SemiColon()$/;"	f
+SemiColon	dotfiles/init.vim	/^    function! SemiColon()$/;"	f
+SetAppDir	dotfiles/.vimrc	/^    fun SetAppDir()$/;"	f
+StartNeomake	dotfiles/init.vim	/^function StartNeomake()$/;"	f
+U	dotfiles/.vimrc	/^	nnoremap  U <C-R>$/;"	m
+U	dotfiles/init.vim	/^	nnoremap  U <C-R>$/;"	m
+[	dotfiles/.vimrc	/^    inoremap [ []<Esc>i$/;"	m
+\\0	dotfiles/.vimrc	/^    nnoremap \\0 :e settings.py<cr>$/;"	m
+\\1	dotfiles/.vimrc	/^    nnoremap \\1 :call RelatedFile ("models.py")<cr>$/;"	m
+\\2	dotfiles/.vimrc	/^    nnoremap \\2 :call RelatedFile ("views.py")<cr>$/;"	m
+\\3	dotfiles/.vimrc	/^    nnoremap \\3 :call RelatedFile ("urls.py")<cr>$/;"	m
+\\4	dotfiles/.vimrc	/^    nnoremap \\4 :call RelatedFile ("admin.py")<cr>$/;"	m
+\\5	dotfiles/.vimrc	/^    nnoremap \\5 :call RelatedFile ("tests.py")<cr>$/;"	m
+\\6	dotfiles/.vimrc	/^    nnoremap \\6 :call RelatedFile ( "templates\/" )<cr>$/;"	m
+\\7	dotfiles/.vimrc	/^    nnoremap \\7 :call RelatedFile ( "templatetags\/" )<cr>$/;"	m
+\\8	dotfiles/.vimrc	/^    nnoremap \\8 :call RelatedFile ( "management\/" )<cr>$/;"	m
+\\9	dotfiles/.vimrc	/^    nnoremap \\9 :e urls.py<cr>$/;"	m
+]	dotfiles/.vimrc	/^    inoremap ] <c-r>=ClosePair(']')<CR>$/;"	m
+copy_file	copy_files.sh	/^function copy_file {$/;"	f
+copy_file	dotfiles/copy_files.sh	/^function copy_file {$/;"	f
+g:AutoClosePreserveDotReg	dotfiles/init.vim	/^let g:AutoClosePreserveDotReg = 0$/;"	v
+g:SimpylFold_docstring_preview	dotfiles/.vimrc	/^    let g:SimpylFold_docstring_preview=1$/;"	v
+g:SimpylFold_docstring_preview	dotfiles/init.vim	/^    let g:SimpylFold_docstring_preview=1$/;"	v
+g:UltiSnipsEditSplit	dotfiles/.vimrc	/^    let g:UltiSnipsEditSplit="vertical"$/;"	v
+g:UltiSnipsEditSplit	dotfiles/init.vim	/^    let g:UltiSnipsEditSplit="vertical"$/;"	v
+g:UltiSnipsExpandTrigger	dotfiles/.vimrc	/^    let g:UltiSnipsExpandTrigger="<c-c>"$/;"	v
+g:UltiSnipsExpandTrigger	dotfiles/init.vim	/^    let g:UltiSnipsExpandTrigger="<c-c>"$/;"	v
+g:UltiSnipsJumpBackwardTrigger	dotfiles/.vimrc	/^    let g:UltiSnipsJumpBackwardTrigger="<c-a>"$/;"	v
+g:UltiSnipsJumpBackwardTrigger	dotfiles/init.vim	/^    let g:UltiSnipsJumpBackwardTrigger="<c-a>"$/;"	v
+g:UltiSnipsJumpForwardTrigger	dotfiles/.vimrc	/^    let g:UltiSnipsJumpForwardTrigger="<c-d>"$/;"	v
+g:UltiSnipsJumpForwardTrigger	dotfiles/init.vim	/^    let g:UltiSnipsJumpForwardTrigger="<c-d>"$/;"	v
+g:airline#extensions#branch#format	dotfiles/init.vim	/^    let g:airline#extensions#branch#format = 0$/;"	v
+g:airline#extensions#hunks#enabled	dotfiles/init.vim	/^    let g:airline#extensions#hunks#enabled = 0$/;"	v
+g:airline#extensions#mike#enabled	dotfiles/init.vim	/^    let g:airline#extensions#mike#enabled = 1$/;"	v
+g:airline#extensions#tabline#buffer_idx_format	dotfiles/init.vim	/^    let g:airline#extensions#tabline#buffer_idx_format = {$/;"	v
+g:airline#extensions#tabline#buffer_idx_mode	dotfiles/init.vim	/^    let g:airline#extensions#tabline#buffer_idx_mode = 1$/;"	v
+g:airline#extensions#tabline#enabled	dotfiles/init.vim	/^    let g:airline#extensions#tabline#enabled = 1$/;"	v
+g:airline#extensions#tabline#fnamemod	dotfiles/init.vim	/^    let g:airline#extensions#tabline#fnamemod = ':t'$/;"	v
+g:airline#extensions#whitespace#enabled	dotfiles/init.vim	/^    let g:airline#extensions#whitespace#enabled = 0$/;"	v
+g:airline#extensions#wordcount#enabled	dotfiles/init.vim	/^    let g:airline#extensions#wordcount#enabled = 0$/;"	v
+g:airline_detect_spell	dotfiles/init.vim	/^    let g:airline_detect_spell=0$/;"	v
+g:airline_detect_spelllang	dotfiles/init.vim	/^    let g:airline_detect_spelllang=0$/;"	v
+g:airline_mode_map	dotfiles/init.vim	/^    let g:airline_mode_map = {$/;"	v
+g:airline_powerline_fonts	dotfiles/init.vim	/^    let g:airline_powerline_fonts = 1$/;"	v
+g:airline_theme	dotfiles/init.vim	/^let g:airline_theme='wombat'$/;"	v
+g:deoplete#enable_at_startup	dotfiles/init.vim	/^	let g:deoplete#enable_at_startup = 1$/;"	v
+g:g_query	dotfiles/.vimrc	/^            let g:g_query = query$/;"	v
+g:g_query	dotfiles/.vimrc	/^    let g:g_query = ""$/;"	v
+g:g_query	dotfiles/init.vim	/^            let g:g_query = query$/;"	v
+g:g_query	dotfiles/init.vim	/^    let g:g_query = ""$/;"	v
+g:g_replace	dotfiles/.vimrc	/^    let g:g_replace = ""$/;"	v
+g:g_replace	dotfiles/init.vim	/^    let g:g_replace = ""$/;"	v
+g:indentLine_char	dotfiles/.vimrc	/^    let g:indentLine_char = '│'$/;"	v
+g:indentLine_char	dotfiles/init.vim	/^    let g:indentLine_char = '│'$/;"	v
+g:indentLine_color_gui	dotfiles/.vimrc	/^    let g:indentLine_color_gui = '#09AA08'$/;"	v
+g:indentLine_color_gui	dotfiles/init.vim	/^    let g:indentLine_color_gui = '#09AA08'$/;"	v
+g:indentLine_color_term	dotfiles/.vimrc	/^    let g:indentLine_color_term = 239$/;"	v
+g:indentLine_color_term	dotfiles/init.vim	/^    let g:indentLine_color_term = 239$/;"	v
+g:jchain_include_noargs	dotfiles/init.vim	/^let g:jchain_include_noargs = 0$/;"	v
+g:last_relative_dir	dotfiles/.vimrc	/^            let g:last_relative_dir = expand("%:h") . '\/'$/;"	v
+g:last_relative_dir	dotfiles/.vimrc	/^    let g:last_relative_dir = ''$/;"	v
+g:line_no_indicator_chars	dotfiles/init.vim	/^    let g:line_no_indicator_chars = ['⎺', '⎻', '⎼', '⎽', '_']$/;"	v
+g:neomake_error_sign	dotfiles/init.vim	/^let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}$/;"	v
+g:neomake_info_sign	dotfiles/init.vim	/^let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}$/;"	v
+g:neomake_message_sign	dotfiles/init.vim	/^let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}$/;"	v
+g:neomake_warning_sign	dotfiles/init.vim	/^let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}$/;"	v
+g:webdevicons_enable_airline_statusline	dotfiles/init.vim	/^    let g:webdevicons_enable_airline_statusline = 1$/;"	v
+g:yankring_replace_n_nkey	dotfiles/init.vim	/^    let g:yankring_replace_n_nkey = '<m-n>'$/;"	v
+g:yankring_replace_n_pkey	dotfiles/init.vim	/^    let g:yankring_replace_n_pkey = '<m-p>'$/;"	v
+g:ycm_autoclose_preview_window_after_completion	dotfiles/.vimrc	/^    let g:ycm_autoclose_preview_window_after_completion=1$/;"	v
+g:ycm_autoclose_preview_window_after_completion	dotfiles/init.vim	/^    let g:ycm_autoclose_preview_window_after_completion=1$/;"	v
+pluginsExist	dotfiles/init.vim	/^      let pluginsExist=1$/;"	v
+print_bar	copy_files.sh	/^function print_bar {$/;"	f
+print_bar	dotfiles/copy_files.sh	/^function print_bar {$/;"	f
+python_highlight_all	dotfiles/.vimrc	/^let python_highlight_all=1$/;"	v
+python_highlight_all	dotfiles/init.vim	/^let python_highlight_all=1$/;"	v
+remember_folds	dotfiles/.vimrc	/^    augroup remember_folds$/;"	a
+t	dotfiles/.tmux.conf	/^bind -n WheelDownPane select-pane -t= \\; send-keys -M $/;"	k
+t	dotfiles/.tmux.conf	/^bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode/;"	k
+{	dotfiles/.vimrc	/^    inoremap { {<esc>o}<esc>kA$/;"	m
+{%	dotfiles/.vimrc	/^    inoremap {% {%  %}<Esc>2hi$/;"	m
+}	dotfiles/.vimrc	/^    inoremap } <c-r>=CloseBracket()<CR>$/;"	m
+}	dotfiles/.vimrc	/^    inoremap } <c-r>=ClosePair('}')<CR>$/;"	m
