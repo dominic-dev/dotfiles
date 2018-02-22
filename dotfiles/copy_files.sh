@@ -45,3 +45,7 @@ done
 
 echo -ne '\n'
 echo "Done"
+
+git add .
+git ci -am 'update'
+git push
