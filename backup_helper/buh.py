@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
+from enum import Enum
 import json
 import os.path
 import hashlib
 import time
-from subprocess import call
+from subprocess import call, check_output
 
 # Load config
 with open("settings.json") as f:
@@ -54,16 +55,25 @@ class HashList(dict):
             for key, value in data.items():
                 self[key] = value
 
+class GitStatus(Enum):
+    UNCHANGED = 0
+    CHANGED = 1
+
 class BackupHelper:
     def __init__(self):
         self.list = HashList()
         self.changed_files = []
 
+    def get_git_status(self):
+        output = check_output(["git", "status"],
+                          cwd=os.path.expanduser(CONFIG["git_directory"]))
+        print(output)
+
     def get_changed_files(self):
         self.changed_files = []
         sha1 = hashlib.sha1()
         for actual_path in CONFIG["files"]:
-            stored_path = os.path.join(CONFIG["directory"],
+            stored_path = os.path.join(CONFIG["backup_directory"],
                                 os.path.basename(actual_path))
             changed = False
             try:
@@ -83,7 +93,7 @@ class BackupHelper:
         # Copy files
         for f in self.changed_files:
             call(['cp', os.path.expanduser(f),
-                  os.path.expanduser(CONFIG["directory"])])
+                  os.path.expanduser(CONFIG["backup_directory"])])
         # Git
         commands = [
             ["git", "add", "."],
@@ -96,6 +106,8 @@ class BackupHelper:
 
 def main():
     b = BackupHelper()
+    # b.get_git_status()
+    # exit()
     print("Checking ...")
     changed_files = b.get_changed_files()
     if not changed_files:

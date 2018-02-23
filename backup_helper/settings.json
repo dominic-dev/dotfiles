@@ -1,5 +1,6 @@
 {
-	"directory" : "~/git/backup/dotfiles/",
+	"git_directory" : "~/git/backup/",
+	"backup_directory" : "~/git/backup/dotfiles/",
 	"files" : [
         "~/.config/nvim/ginit.vim" ,
         "~/.config/nvim/init.vim",
