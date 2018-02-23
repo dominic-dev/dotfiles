@@ -1,0 +1,10 @@
+{
+	"directory" : "~/git/backup/dotfiles/",
+	"files" : [
+        "~/.config/nvim/ginit.vim" ,
+        "~/.config/nvim/init.vim",
+        "~/.vimrc",
+        "~/.tmux.conf"
+	],
+	"interval" : 60
+}
