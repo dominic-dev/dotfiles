@@ -85,12 +85,13 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	dotfiles/ginit.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR
 >	dotfiles/init.vim	/^    vmap > >gv$/;"	m
 BUF_SIZE	backup_helper/buh.py	/^BUF_SIZE = 65536 # 64kb chunks$/;"	v
 BackupHelper	backup_helper/buh.py	/^class BackupHelper:$/;"	c
-CHANGED	backup_helper/buh.py	/^    CHANGED = 1$/;"	v	class:GitStatus
+CLEAN	backup_helper/buh.py	/^    CLEAN = 0$/;"	v	class:GitStatus
 CONFIG	backup_helper/buh.py	/^    CONFIG = json.load(f)$/;"	v
 CloseBracket	dotfiles/.vimrc	/^    function CloseBracket()$/;"	f
 CloseBracket	dotfiles/init.vim	/^    function CloseBracket()$/;"	f
 ClosePair	dotfiles/.vimrc	/^    function ClosePair(char)$/;"	f
 ClosePair	dotfiles/init.vim	/^    function ClosePair(char)$/;"	f
+DIRTY	backup_helper/buh.py	/^    DIRTY = 1$/;"	v	class:GitStatus
 GitStatus	backup_helper/buh.py	/^class GitStatus(Enum):$/;"	c
 H	dotfiles/.vimrc	/^    noremap H ^$/;"	m
 H	dotfiles/init.vim	/^    noremap H ^$/;"	m
@@ -122,7 +123,6 @@ SetAppDir	dotfiles/.vimrc	/^    fun SetAppDir()$/;"	f
 StartNeomake	dotfiles/init.vim	/^function StartNeomake()$/;"	f
 U	dotfiles/.vimrc	/^	nnoremap  U <C-R>$/;"	m
 U	dotfiles/init.vim	/^	nnoremap  U <C-R>$/;"	m
-UNCHANGED	backup_helper/buh.py	/^    UNCHANGED = 0$/;"	v	class:GitStatus
 [	dotfiles/.vimrc	/^    inoremap [ []<Esc>i$/;"	m
 \\0	dotfiles/.vimrc	/^    nnoremap \\0 :e settings.py<cr>$/;"	m
 \\1	dotfiles/.vimrc	/^    nnoremap \\1 :call RelatedFile ("models.py")<cr>$/;"	m

@@ -56,8 +56,8 @@ class HashList(dict):
                 self[key] = value
 
 class GitStatus(Enum):
-    UNCHANGED = 0
-    CHANGED = 1
+    CLEAN = 0
+    DIRTY = 1
 
 class BackupHelper:
     def __init__(self):
@@ -67,7 +67,9 @@ class BackupHelper:
     def get_git_status(self):
         output = check_output(["git", "status"],
                           cwd=os.path.expanduser(CONFIG["git_directory"]))
-        print(output)
+        if "nothing to commit, working directory clean" in str(output):
+            return GitStatus.CLEAN
+        return GitStatus.DIRTY
 
     def get_changed_files(self):
         self.changed_files = []
@@ -106,13 +108,12 @@ class BackupHelper:
 
 def main():
     b = BackupHelper()
-    # b.get_git_status()
-    # exit()
+    b.get_git_status()
     print("Checking ...")
     changed_files = b.get_changed_files()
-    if not changed_files:
-        print("No changes detected.")
-    else:
+    status = b.get_git_status()
+
+    if changed_files:
         print("Changes found in the following files:")
         [print("\t{}".format(path)) for path in changed_files]
         user_input = input("Do you wish to backup? (y/n): ")
@@ -122,6 +123,14 @@ def main():
             print(" done. ")
         else:
             print("Bakup aborted.")
+
+    elif status is GitStatus.DIRTY:
+        user_input = input("Git is dirty, backup and commit? (y/n)")
+        if user_input.lower()[0] == "y":
+            b.backup()
+
+    else:
+        print("No changes detected.")
 
 if __name__ == "__main__":
     main()
