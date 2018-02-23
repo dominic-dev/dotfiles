@@ -25,12 +25,43 @@ def generate_hash(path):
     return sha1.hexdigest()
 
 
+class HashList(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if os.path.isfile(HASH_PATH):
+            self._read()
+        else:
+            self._update()
+            self._write()
+
+    def _update(self):
+        """ Update the hashlib in memory with the actual hashes """
+        self.clear()
+        h = hashlib.sha1()
+        for f in CONFIG["files"]:
+            self[f] = generate_hash(f)
+
+    def _write(self):
+        """ Write the hashlist from memory to file """
+        with open(HASH_PATH, 'w') as f:
+            data = json.dumps(self)
+            f.write(data)
+
+    def _read(self):
+        """ Read the hashlist from file in to memory """
+        with open(HASH_PATH) as f:
+            data = json.load(f)
+            self.clear()
+            for key, value in data.items():
+                self[key] = value
+
 class GitStatus(Enum):
     CLEAN = 0
     DIRTY = 1
 
 class BackupHelper:
     def __init__(self):
+        self.list = HashList()
         self.changed_files = []
 
     def get_git_status(self):
@@ -72,7 +103,7 @@ class BackupHelper:
             ["git", "push"]
         ]
         for c in commands:
-            call(c, cwd=os.path.expanduser(CONFIG["git_directory"]))
+            call(c)
 
 
 def main():
