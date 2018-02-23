@@ -565,3 +565,4 @@ function! PHPDot ()
     endif
     return "->"
 endfunction
+
