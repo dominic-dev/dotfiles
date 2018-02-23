@@ -13,6 +13,10 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	dotfiles/ginit.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR
 (	dotfiles/.vimrc	/^    inoremap ( ()<Esc>i$/;"	m
 )	dotfiles/.vimrc	/^    inoremap ) <c-r>=ClosePair(')')<CR>$/;"	m
 -	dotfiles/init.vim	/^    nmap - @$/;"	m
+0	backup_helper/settings.json	/^        "~\/.config\/nvim\/ginit.vim" ,$/;"	s	array:files
+1	backup_helper/settings.json	/^        "~\/.config\/nvim\/init.vim",$/;"	s	array:files
+2	backup_helper/settings.json	/^        "~\/.vimrc",$/;"	s	array:files
+3	backup_helper/settings.json	/^        "~\/.tmux.conf"$/;"	s	array:files
 ;	dotfiles/.vimrc	/^    nnoremap ; :$/;"	m
 ;	dotfiles/init.vim	/^    nnoremap ; :$/;"	m
 <	dotfiles/.vimrc	/^    vmap < <gv$/;"	m
@@ -79,12 +83,17 @@ $NVIM_TUI_ENABLE_TRUE_COLOR	dotfiles/ginit.vim	/^let $NVIM_TUI_ENABLE_TRUE_COLOR
 <space>	dotfiles/init.vim	/^    nnoremap <space> za$/;"	m
 >	dotfiles/.vimrc	/^    vmap > >gv$/;"	m
 >	dotfiles/init.vim	/^    vmap > >gv$/;"	m
+BUF_SIZE	backup_helper/buh.py	/^BUF_SIZE = 65536 # 64kb chunks$/;"	v
+BackupHelper	backup_helper/buh.py	/^class BackupHelper:$/;"	c
+CONFIG	backup_helper/buh.py	/^    CONFIG = json.load(f)$/;"	v
 CloseBracket	dotfiles/.vimrc	/^    function CloseBracket()$/;"	f
 CloseBracket	dotfiles/init.vim	/^    function CloseBracket()$/;"	f
 ClosePair	dotfiles/.vimrc	/^    function ClosePair(char)$/;"	f
 ClosePair	dotfiles/init.vim	/^    function ClosePair(char)$/;"	f
 H	dotfiles/.vimrc	/^    noremap H ^$/;"	m
 H	dotfiles/init.vim	/^    noremap H ^$/;"	m
+HASH_PATH	backup_helper/buh.py	/^HASH_PATH = ".hashes"$/;"	v
+HashList	backup_helper/buh.py	/^class HashList(dict):$/;"	c
 L	dotfiles/.vimrc	/^    noremap L g_ $/;"	m
 L	dotfiles/init.vim	/^    noremap L \$$/;"	m
 MyOnBattery	dotfiles/init.vim	/^function! MyOnBattery()$/;"	f
@@ -123,8 +132,17 @@ U	dotfiles/init.vim	/^	nnoremap  U <C-R>$/;"	m
 \\8	dotfiles/.vimrc	/^    nnoremap \\8 :call RelatedFile ( "management\/" )<cr>$/;"	m
 \\9	dotfiles/.vimrc	/^    nnoremap \\9 :e urls.py<cr>$/;"	m
 ]	dotfiles/.vimrc	/^    inoremap ] <c-r>=ClosePair(']')<CR>$/;"	m
+__init__	backup_helper/buh.py	/^    def __init__(self):$/;"	m	class:BackupHelper
+__init__	backup_helper/buh.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:HashList
+_read	backup_helper/buh.py	/^    def _read(self):$/;"	m	class:HashList
+_update	backup_helper/buh.py	/^    def _update(self):$/;"	m	class:HashList
+_write	backup_helper/buh.py	/^    def _write(self):$/;"	m	class:HashList
+backup	backup_helper/buh.py	/^    def backup(self):$/;"	m	class:BackupHelper
+copy_file	backup_helper/copy_files.sh	/^function copy_file {$/;"	f
 copy_file	copy_files.sh	/^function copy_file {$/;"	f
 copy_file	dotfiles/copy_files.sh	/^function copy_file {$/;"	f
+directory	backup_helper/settings.json	/^	"directory" : "~\/git\/backup\/dotfiles\/",$/;"	s
+files	backup_helper/settings.json	/^	"files" : [$/;"	a
 g:AutoClosePreserveDotReg	dotfiles/init.vim	/^let g:AutoClosePreserveDotReg = 0$/;"	v
 g:SimpylFold_docstring_preview	dotfiles/.vimrc	/^    let g:SimpylFold_docstring_preview=1$/;"	v
 g:SimpylFold_docstring_preview	dotfiles/init.vim	/^    let g:SimpylFold_docstring_preview=1$/;"	v
@@ -176,7 +194,13 @@ g:yankring_replace_n_nkey	dotfiles/init.vim	/^    let g:yankring_replace_n_nkey 
 g:yankring_replace_n_pkey	dotfiles/init.vim	/^    let g:yankring_replace_n_pkey = '<m-p>'$/;"	v
 g:ycm_autoclose_preview_window_after_completion	dotfiles/.vimrc	/^    let g:ycm_autoclose_preview_window_after_completion=1$/;"	v
 g:ycm_autoclose_preview_window_after_completion	dotfiles/init.vim	/^    let g:ycm_autoclose_preview_window_after_completion=1$/;"	v
+generate_hash	backup_helper/buh.py	/^def generate_hash(path):$/;"	f
+get_changed_files	backup_helper/buh.py	/^    def get_changed_files(self):$/;"	m	class:BackupHelper
+git	backup_helper/settings.json	/^	"git" : "~\/git\/backup\/",$/;"	s
+interval	backup_helper/settings.json	/^	"interval" : 60$/;"	n
+main	backup_helper/buh.py	/^def main():$/;"	f
 pluginsExist	dotfiles/init.vim	/^      let pluginsExist=1$/;"	v
+print_bar	backup_helper/copy_files.sh	/^function print_bar {$/;"	f
 print_bar	copy_files.sh	/^function print_bar {$/;"	f
 print_bar	dotfiles/copy_files.sh	/^function print_bar {$/;"	f
 python_highlight_all	dotfiles/.vimrc	/^let python_highlight_all=1$/;"	v
