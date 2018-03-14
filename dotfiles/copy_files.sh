@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=(~/.config/nvim/ginit.vim ~/.config/nvim/init.vim ~/.tmux.conf ~/.vimrc)
+FILES=(~/.config/nvim/ginit.vim ~/.config/nvim/init.vim ~/.tmux.conf ~/.vimrc ~/.spacemacs)
 DIR=~/git/backup/dotfiles/
 TOTAL=${#FILES[@]}
 BAR=50

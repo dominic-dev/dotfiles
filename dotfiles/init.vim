@@ -120,6 +120,23 @@
 if &ft != 'java'
 	let g:deoplete#enable_at_startup = 1
 endif
+" Disable Deoplete when selecting multiple cursors starts
+function! Multiple_cursors_before()
+    if exists('*deoplete#disable')
+        exe 'call deoplete#disable()'
+    elseif exists(':NeoCompleteLock') == 2
+        exe 'NeoCompleteLock'
+    endif
+endfunction
+
+" Enable Deoplete when selecting multiple cursors ends
+function! Multiple_cursors_after()
+    if exists('*deoplete#enable')
+        exe 'call deoplete#enable()'
+    elseif exists(':NeoCompleteUnlock') == 2
+        exe 'NeoCompleteUnlock'
+    endif
+endfunction
 
 " Autoclose
 "let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>", "UP" : "<UP>", "DOWN" : "<DOWN>"}
