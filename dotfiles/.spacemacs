@@ -31,36 +31,39 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     javascript
-     python
+     auto-completion
+     emacs-lisp
+     ;; git
+     helm
+     html
      java
-     ;; php
+     javascript
+     markdown
      phpplus
+     python
+     syntax-checking
+     themes-megapack
+     version-control
+     ;; php
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
-     auto-completion
      ;; better-defaults
-     emacs-lisp
-     git
-     markdown
-     themes-megapack
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      ac-php
+   )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -314,13 +317,13 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq package-archives
-        '(("melpa" . "https://melpa.org/packages/")) )
-  (package-initialize)
-  (unless (package-installed-p 'ac-php )
-    (package-refresh-contents)
-    (package-install 'ac-php )
-    )
+  ;; (setq package-archives
+  ;;       '(("melpa" . "https://melpa.org/packages/")) )
+  ;; (package-initialize)
+  ;; (unless (package-installed-p 'ac-php )
+  ;;   (package-refresh-contents)
+  ;;   (package-install 'ac-php )
+  ;;   )
   (require 'cl)
   (require 'php-mode)
   (add-hook 'php-mode-hook
@@ -352,7 +355,83 @@ you should place your code here."
     (setq-default evil-escape-key-sequence nil)
     (spacemacs/set-leader-keys "jw" 'avy-goto-word-0)
     (spacemacs/set-leader-keys "jW" 'avy-goto-word-1)
-  )
+
+    (defun my-smart-insert-dot ()
+      "in php-mode: insert “.” if in a string or comment, else “->”"
+      (interactive)
+      (if (or (nth 3 (syntax-ppss)) (nth 4 (syntax-ppss)))
+          (progn (insert "."))
+        (progn (insert "->"))))
+
+    ;; (progn
+    ;;   (define-prefix-command 'my-auto-close-template-map)
+    ;;   (define-key my-auto-close-template-map "{" (lambda ()
+    ;;     (interactive)
+    ;;     (progn
+    ;;         (insert "{{ }}")
+    ;;         (evil-normal-state)
+    ;;         (backward-char 2)
+    ;;         (evil-insert-state)
+    ;;         (insert " "))))
+    ;;   (define-key my-auto-close-template-map "%" (lambda ()
+    ;;     (interactive)
+    ;;     (progn
+    ;;       (insert "{% %}")
+    ;;       (evil-normal-state)
+    ;;       (backward-char 2)
+    ;;       (evil-insert-state)
+    ;;       (insert " "))))
+    ;;     )
+
+
+    ;; (defun my-auto-close-template()
+    ;;   " auto close {{ and {% in template files"
+    ;;   (interactive)
+    ;;   (require 'web-mode)
+
+    ;;   (setq my-event (read-event))
+    ;;   (cond (
+    ;;       (eq my-event 37)
+    ;;       (progn 
+    ;;         (insert "{% %}")
+    ;;         (evil-normal-state)
+    ;;         (backward-char 2)
+    ;;         (evil-insert-state)
+    ;;         (insert " ")))
+
+    ;;       ((eq my-event 123)
+    ;;       (progn 
+    ;;         (insert "{{ }}")
+    ;;         (evil-normal-state)
+    ;;         (backward-char 2)
+    ;;         (evil-insert-state)
+    ;;         (insert " ")))
+
+    ;; (add-hook 'web-mode-hook
+    ;;           (lambda() (local-set-key "{" my-auto-close-template-map)))
+
+    (add-hook 'php-mode-hook
+              (lambda() (local-set-key "." 'my-smart-insert-dot)))
+
+    ;; (define-key php-mode-map "." 'my-smart-insert-dot)
+    (setq-default dotspacemacs-configuration-layers
+                  '((auto-completion :variables
+                                     auto-completion-enable-snippets-in-popup t)))
+
+    (defvar my-keys-minor-mode-map
+      (let ((map (make-sparse-keymap)))
+        (define-key map (kbd "C-/" ) 'yas-expand)
+        map)
+      "my-keys-minor-mode keymap.")
+
+    (define-minor-mode my-keys-minor-mode
+      "A minor mode so that my key settings override annoying major modes."
+      :init-value t
+      :lighter " my-keys")
+
+    (my-keys-minor-mode 1)
+    )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
